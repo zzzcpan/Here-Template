@@ -40,7 +40,7 @@ warnings inside the template's blocks, just in case. E.g.:
     
         Let's count to 10: <? 
             for $k (1..10) { 
-                $out .= "$k ";
+                $here .= "$k ";
             }
         ?>
     
