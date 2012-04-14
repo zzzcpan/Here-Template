@@ -1,10 +1,10 @@
 NAME
-    Here::Template - code filter for simple heredoc templates
+    Here::Template - heredoc templates
 
 SYNOPSIS
         use Here::Template;
     
-        print << 'TMPL';
+        print <<'TMPL';
     
             Hello, my pid is <?= $$ ?>
     
@@ -19,6 +19,9 @@ SYNOPSIS
 DESCRIPTION
     Simple Filter::Util::Call based implementation of heredoc templates.
 
+    To enable templates in some heredoc use quoted heredoc mark that
+    contains TMPL.
+
 EXPORT
     This module doesn't export anything by default.
 
@@ -30,7 +33,7 @@ EXPORT
     
         use Here::Template 'relaxed';
     
-        print << 'TMPL';
+        print <<'TMPL';
     
             Let's count to 10: <? 
                 for $k (1..10) { 
@@ -47,5 +50,5 @@ LICENSE
     Copyright 2011-2012 Alexandr Gomoliako. All rights reserved.
 
     This module is free software. It may be used, redistributed and/or
-    modified under the same terms as nginx itself.
+    modified under the same terms as perl itself.
 

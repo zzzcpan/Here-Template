@@ -2,13 +2,13 @@ package Here::Template;
 
 =head1 NAME
 
-Here::Template - code filter for simple heredoc templates
+Here::Template - heredoc templates
 
 =head1 SYNOPSIS
 
     use Here::Template;
     
-    print << 'TMPL';
+    print <<'TMPL';
     
         Hello, my pid is <?= $$ ?>
     
@@ -24,6 +24,9 @@ Here::Template - code filter for simple heredoc templates
 
 Simple Filter::Util::Call based implementation of heredoc templates.
 
+To enable templates in some heredoc use quoted heredoc mark that contains
+B<TMPL>. 
+
 =head1 EXPORT
 
 This module doesn't export anything by default.
@@ -36,7 +39,7 @@ warnings inside the template's blocks, just in case. E.g.:
     
     use Here::Template 'relaxed';
     
-    print << 'TMPL';
+    print <<'TMPL';
     
         Let's count to 10: <? 
             for $k (1..10) { 
@@ -138,7 +141,7 @@ Alexandr Gomoliako <zzz@zzz.org.ua>
 Copyright 2011-2012 Alexandr Gomoliako. All rights reserved.
 
 This module is free software. It may be used, redistributed and/or modified 
-under the same terms as B<nginx> itself.
+under the same terms as perl itself.
 
 =cut
 
