@@ -90,18 +90,6 @@ sub import {
             while (1) {
                 $st = filter_read();
 
-                if (/ $eof /gcx) {
-                    my $tmp  =  substr($_, 0, pos($_) - length($&));
-                       $_    =  substr($_, pos($_));
-                       $tmp  =~ s/$q/\\$q/g;
-                       $buf .=  $tmp;
-
-                    # '; $var }
-                    $buf .= "$q; $out }";
-                    $_    = $buf.$buf_end.$_;
-                    last;
-                }
-
                 if (/ $start (=)? /gcx) {
                     my $echo = $1;
 
@@ -120,6 +108,18 @@ sub import {
                     $buf .= "$q; ".
                              ($echo ? "$out.=$tmp" : "$tmp").
                              "; $out .=$q";
+                }
+
+                if (/ $eof /gcx) {
+                    my $tmp  =  substr($_, 0, pos($_) - length($&));
+                       $_    =  substr($_, pos($_));
+                       $tmp  =~ s/$q/\\$q/g;
+                       $buf .=  $tmp;
+
+                    # '; $var }
+                    $buf .= "$q; $out }";
+                    $_    = $buf.$buf_end.$_;
+                    last;
                 }
 
                 last 
