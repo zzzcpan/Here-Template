@@ -54,7 +54,7 @@ warnings inside templates. E.g.:
 
 =cut
 
-our $VERSION = '0.1';
+our $VERSION = '0.2';
 
 use strict;
 use warnings;
