@@ -11,12 +11,7 @@ Here::Template - heredoc templates
     print <<'TMPL';
     
         Hello, my pid is <?= $$ ?>
-    
-        Let's count to 10: <? 
-            for (1..10) { 
-                $here .= "$_ ";
-            }
-        ?>
+        Let's count to 10: <? for (1..10) { ?>$_ <? } ?>
     
     TMPL
 
@@ -25,14 +20,22 @@ Here::Template - heredoc templates
 Simple Filter::Util::Call based implementation of heredoc templates.
 
 To enable templates in some heredoc use quoted heredoc mark that contains
-B<TMPL>. 
+B<TMPL>. Output is added to the buffer C<$here>. You can append data
+there as well:
+
+    print <<'TMPL';
+    
+        Hello, my pid is <?= $$ ?>
+        Let's count to 10: <? for (1..10) { $here.= "$_" } ?>
+    
+    TMPL
 
 =head1 EXPORT
 
 This module doesn't export anything by default.
 
 Special argument B<relaxed> can be used to disable strict and
-warnings inside the template's blocks, just in case. E.g.:
+warnings inside templates. E.g.:
 
     use strict;
     use warnings; 
